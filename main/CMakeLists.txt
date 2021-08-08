@@ -1,2 +1,2 @@
-idf_component_register(SRCS "power_esp_main.c"
-                    INCLUDE_DIRS "")
+idf_component_register(SRCS "."
+                    INCLUDE_DIRS ".")
