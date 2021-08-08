@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeSharedSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Default" TOOLCHAIN_NAME="xtensa-esp32-toolchain" GENERATION_OPTIONS="-DIDF_PATH=/home/luca/esp/esp-idf -DPYTHON=/home/luca/.espressif/python_env/idf4.4_py3.9_env/bin/python" ENABLED="true">
+        <ADDITIONAL_GENERATION_ENVIRONMENT>
+          <envs>
+            <env name="IDF_PATH" value="$USER_HOME$/esp/esp-idf" />
+            <env name="PYTHON" value="$USER_HOME$/.espressif/python_env/idf4.4_py3.9_env/bin/python" />
+          </envs>
+        </ADDITIONAL_GENERATION_ENVIRONMENT>
+      </configuration>
+    </configurations>
+  </component>
+</project>
