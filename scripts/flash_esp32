@@ -1,0 +1,11 @@
+#!/bin/sh
+# This script flashes the built .elf file onto the board.
+source ./scripts/includeidf
+idf.py flash
+echo "Press any key to continue"
+while [ true ] ; do
+read -t 3 -n 1
+if [ $? = 0 ] ; then
+exit ;
+fi
+done

@@ -5,12 +5,3 @@ export IDF_HAS_BEEN_IMPORTED=1
 export IDF_PATH=~/esp/esp-idf
 . $HOME/esp/esp-idf/export.sh
 fi
-idf.py flash
-echo "Press any key to continue"
-while [ true ] ; do
-read -t 3 -n 1
-if [ $? = 0 ] ; then
-exit ;
-fi
-done
-exit

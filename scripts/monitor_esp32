@@ -1,0 +1,4 @@
+#!/bin/sh
+# This script flashes the built .elf file onto the board.
+source ./scripts/includeidf
+idf.py monitor

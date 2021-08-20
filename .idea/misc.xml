@@ -3,8 +3,10 @@
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
   <component name="CidrRootsConfiguration">
     <sourceRoots>
+      <file path="$PROJECT_DIR$/application" />
       <file path="$PROJECT_DIR$/iic" />
       <file path="$PROJECT_DIR$/main" />
+      <file path="$PROJECT_DIR$/scripts" />
     </sourceRoots>
     <excludeRoots>
       <file path="$PROJECT_DIR$/build" />
