@@ -6,12 +6,14 @@
 #define POWERESP_MAIN_H
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "Gpio.h"
 #define pdSECOND pdMS_TO_TICKS(1000)
 
 class Main final {
 public:
     esp_err_t setup(void);
     void run(void);
+    Gpio::GpioOutput led{GPIO_NUM_17};
 };
 
 #endif //POWERESP_MAIN_H

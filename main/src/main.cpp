@@ -20,10 +20,15 @@ extern "C" void app_main(void)
 esp_err_t Main::setup(void) {
     esp_err_t status{ESP_OK};
     ESP_LOGI(LOG_TAG, "Main setup invocation");
+    led.init();
     return status;
 }
 
 void Main::run(void) {
-    ESP_LOGI(LOG_TAG, "Running loop");
+    ESP_LOGI(LOG_TAG, "LED on");
+    led.set(true);
+    vTaskDelay(pdSECOND);
+    ESP_LOGI(LOG_TAG, "LED off");
+    led.set(false);
     vTaskDelay(pdSECOND);
 }
