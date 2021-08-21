@@ -18,7 +18,6 @@ extern "C" void app_main(void)
 }
 
 static PwmControl::PCA9632 pwmController;
-
 esp_err_t Main::setup(void) {
     esp_err_t status{ESP_OK};
     ESP_LOGI(LOG_TAG, "Main setup invocation");
@@ -28,7 +27,7 @@ esp_err_t Main::setup(void) {
     // end gpio setup
     // start i2c setup
     I2C_t& i2cMaster = i2c0;
-    ESP_ERROR_CHECK(i2cMaster.begin(GPIO_NUM_21, GPIO_NUM_22, 400000));
+    ESP_ERROR_CHECK(i2cMaster.begin(I2C_SDA_PIN, I2C_SCL_PIN, I2C_CLK_FREQ));
     i2cMaster.setTimeout(10);
     // i2cMaster.scanner();
     // end i2c setup
