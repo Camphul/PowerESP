@@ -1,0 +1,5 @@
+#!/bin/sh
+# This script flashes the built .elf file onto the board.
+source ./scripts/clean_esp32
+source ./scripts/build_esp32
+echo "Done cleanbuild"

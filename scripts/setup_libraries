@@ -1,0 +1,6 @@
+#!/bin/sh
+# This script fetches the required git repos for libraries.
+echo "Obtaining libraries and building project"
+cd libraries
+git clone https://github.com/Camphul/esp32-I2Cbus.git I2Cbus
+cd ..

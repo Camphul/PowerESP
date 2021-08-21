@@ -3,7 +3,7 @@
 # This cmake is built on an arch linux machine. Windows might require an other cmake.
 cmake_minimum_required(VERSION 3.8)
 set(CMAKE_CXX_STANDARD 17)
-set(EXTRA_COMPONENT_DIRS main application)
+set(EXTRA_COMPONENT_DIRS main libraries application)
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 set(USER_HOME "$ENV{HOME}")
 # replace with your ESP-IDF version.

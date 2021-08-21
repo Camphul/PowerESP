@@ -7,6 +7,8 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "Gpio.h"
+#include "I2Cbus.hpp"
+#include "PCA9632.h"
 #define pdSECOND pdMS_TO_TICKS(1000)
 
 class Main final {

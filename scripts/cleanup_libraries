@@ -1,0 +1,5 @@
+#!/bin/sh
+# This script cleans up the libraries directory
+echo "Obtaining libraries and building project"
+cd libraries
+rm -rf I2Cbus
