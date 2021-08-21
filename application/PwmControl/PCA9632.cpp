@@ -7,7 +7,7 @@
 #include "esp_log.h"
 #define LOG_TAG "PCA9632"
 #include "freertos/task.h"
-#define DEFAULT_I2C_TIMEOUT -1
+#define DEFAULT_I2C_TIMEOUT 10
 namespace PwmControl {
     [[nodiscard]] esp_err_t PCA9632::init_device(void) {
         esp_err_t status{ESP_OK};
@@ -37,7 +37,6 @@ namespace PwmControl {
         esp_err_t status{ESP_OK};
         uint8_t oldMode1;
         ESP_ERROR_CHECK(readRegister(PCA9632_MODE1, &oldMode1));
-        ESP_LOGI(LOG_TAG, "Read oldmode value: 0x%02X", oldMode1);
         uint8_t newMode1 = oldMode1 | PCA9632_MODE1_MASK_SLEEP;
         ESP_ERROR_CHECK(writeRegister(PCA9632_MODE1, newMode1));
         ESP_LOGD(LOG_TAG, "Putting device to sleep");
@@ -109,7 +108,6 @@ namespace PwmControl {
         esp_err_t status{ESP_OK};
         uint8_t oldMode2;
         ESP_ERROR_CHECK(readRegister(PCA9632_MODE2, &oldMode2));
-        ESP_LOGI(LOG_TAG, "Read oldmode2 value: 0x%02X", oldMode2);
         uint8_t newMode2 = (oldMode2 & PCA9632_MODE2_MASK_DMBLNK) | (inverted << 4) | (trigger << 3) | (structure << 2) | output;
         ESP_ERROR_CHECK(writeRegister(PCA9632_MODE2, newMode2));
         return status;
@@ -126,7 +124,6 @@ namespace PwmControl {
         esp_err_t status{ESP_OK};
         uint8_t oldMode2;
         ESP_ERROR_CHECK(readRegister(PCA9632_MODE2, &oldMode2));
-        ESP_LOGI(LOG_TAG, "Read oldmode2 value: 0x%02X", oldMode2);
         uint8_t newMode2 = oldMode2 & ~PCA9632_MODE2_MASK_DMBLNK;
         ESP_ERROR_CHECK(writeRegister(PCA9632_MODE2, newMode2));
         ESP_ERROR_CHECK(setGroupPwm(ratio));
@@ -154,7 +151,7 @@ namespace PwmControl {
 
     /*!
      * @brief Enables or disables the dimming/blinking effects for a channel.
-     * @param channel The channel (0 - 7) whose flag must be set.
+     * @param channel The channel (0 - 3) whose flag must be set.
      * @param enabled Whether or not the effects must be enabled.
      */
     [[nodiscard]] esp_err_t PCA9632::setEffectEnabled(const uint8_t channel, const bool enabled) {
@@ -182,7 +179,7 @@ namespace PwmControl {
 
     /*!
      * @brief Sets the brightness of a channel.
-     * @param channel The channel (0 - 7) whose brighness must be set.
+     * @param channel The channel (0 - 3) whose brighness must be set.
      * @param value The brightness intensity. The PWM duty cycle will be set to value / 256. If the effects are disabled for this channel, the maximum value is 256, 255 otherwise. The minimum value is 0.
      */
     [[nodiscard]] esp_err_t PCA9632::setBrightness(const uint8_t channel, const uint16_t value) {
@@ -249,14 +246,12 @@ namespace PwmControl {
     }
     esp_err_t PCA9632::writeRegister(const uint8_t regAddr, const uint8_t value) {
         esp_err_t status{ESP_OK};
-        ESP_LOGD(LOG_TAG, "Writing to register.");
         status |= _master.writeByte(PCA9632_ALL_CALL_I2C_SLAVE_ADDRESS, regAddr & 0x1F, value, DEFAULT_I2C_TIMEOUT);
         return status;
     }
 
     esp_err_t PCA9632::readRegister(const uint8_t regAddr, uint8_t* value) {
         esp_err_t status{ESP_OK};
-        ESP_LOGD(LOG_TAG, "Reading register");
         status |= _master.readByte(PCA9632_ALL_CALL_I2C_SLAVE_ADDRESS, regAddr & 0x1F, value, DEFAULT_I2C_TIMEOUT);
         return status;
     }

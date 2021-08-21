@@ -34,23 +34,26 @@ esp_err_t Main::setup(void) {
     // end i2c setup
     // start PCA9632 setup
     ESP_ERROR_CHECK(pwmController.init_device());
-    ESP_ERROR_CHECK(pwmController.setEffectEnabled(1, true));
-    ESP_ERROR_CHECK(pwmController.setEffectEnabled(2, true));
-    ESP_ERROR_CHECK(pwmController.configureBlinkingEffect(2, 0.1));
-    ESP_ERROR_CHECK(pwmController.setBrightness(1, 255));
-    ESP_ERROR_CHECK(pwmController.setBrightness(2, 255));
     // end PCA9632 setup
     ESP_LOGI(LOG_TAG, "Main setup completed");
     return status;
 }
 
 void Main::run(void) {
-    ESP_LOGI(LOG_TAG, "LED on");
-    led.set(true);
-    ESP_ERROR_CHECK(pwmController.setBrightness(0, 0));
-    vTaskDelay(pdSECOND);
-    ESP_LOGI(LOG_TAG, "LED off");
-    led.set(false);
-    ESP_ERROR_CHECK(pwmController.setBrightness(0, 256));
-    vTaskDelay(pdSECOND);
+    ESP_LOGI(LOG_TAG, "Rerunning loop");
+    ESP_ERROR_CHECK(led.set(true));
+    for(uint8_t ledIndex = 0; ledIndex <3; ledIndex++) {
+        for(uint16_t brightness = 0; brightness < 256; brightness++) {
+            ESP_ERROR_CHECK(pwmController.setBrightness(ledIndex, brightness));
+            vTaskDelay(pdMS_TO_TICKS(5));
+        }
+        for(uint16_t brightness = 256; brightness > 0; brightness--) {
+            ESP_ERROR_CHECK(pwmController.setBrightness(ledIndex, brightness));
+            vTaskDelay(pdMS_TO_TICKS(5));
+        }
+        ESP_ERROR_CHECK(pwmController.setBrightness(0, 0));
+        ESP_ERROR_CHECK(pwmController.setBrightness(1, 0));
+        ESP_ERROR_CHECK(pwmController.setBrightness(2, 0));
+        ESP_ERROR_CHECK(led.set(ledIndex % 2 == 0));
+    }
 }
