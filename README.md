@@ -22,7 +22,7 @@ Hardware/kicad/final project might be released on this or another repository lat
 
 Many thanks to the following repositories/libraries which are used:
 - [I2Cbus](https://github.com/natanaeljr/esp32-I2Cbus) Forked: [here](https://github.com/Camphul/esp32-I2Cbus) to fix some minor bugs and add custom functionality.
-- [freertos-addons](https://github.com/michaelbecker/freertos-addons) Forked: [here](https://github.com/Camphul/freertos-addons) to make it available as an esp-idf component.
+- [freertos-addons](https://github.com/eagi223/freertos-addons-ESP32-Port) Forked: [here](https://github.com/Camphul/freertos-addons-ESP32-Port) for stability when this repository is cloned.
 
 ## License
 
