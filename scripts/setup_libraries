@@ -3,4 +3,5 @@
 echo "Obtaining libraries and building project"
 cd libraries
 git clone https://github.com/Camphul/esp32-I2Cbus.git I2Cbus
+git clone https://github.com/Camphul/freertos-addons.git freertos-addons
 cd ..
