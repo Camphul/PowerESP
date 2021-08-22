@@ -40,6 +40,7 @@ namespace Gpio{
                 invert
             }
             {
+                gpio_config(&_cfg);
             }
             esp_err_t init(void);
             esp_err_t set(const bool state);
@@ -47,13 +48,25 @@ namespace Gpio{
             bool state(void) { return _state; }
         }; // class GpioOutput
 
-        class GpioInput {
-            const gpio_num_t _pin;
-            const bool _inverted_logic;
+        class GpioInput : public GpioBase {
+            bool _state = false;
             public:
-            constexpr GpioInput(const gpio_num_t pin,const bool invert = false) : _pin{pin}, _inverted_logic{invert} {
-
+            constexpr GpioInput(const gpio_num_t pin, const bool invert = false) : GpioBase{
+                pin,
+                gpio_config_t{
+                    .pin_bit_mask = static_cast<uint64_t>(1) << pin,
+                    .mode = GPIO_MODE_INPUT,
+                    .pull_up_en = GPIO_PULLUP_DISABLE,
+                    .pull_down_en = GPIO_PULLDOWN_ENABLE,
+                    .intr_type = GPIO_INTR_DISABLE,
+                    },
+                    invert
             }
+            {
+                gpio_config(&_cfg);
+            }
+            esp_err_t init(void);
+            esp_err_t set(const bool state);
             bool state(void);
         }; //class GpioInput
 } // namespace Gpio

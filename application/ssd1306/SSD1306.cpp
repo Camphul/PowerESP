@@ -75,7 +75,7 @@ namespace ssd1306 {
      * @param command the command to send to the ic.
      * @return default esp success/fail response format.
      */
-    [[nodiscard]] esp_err_t SSD1306::ssd1306_command(uint8_t command) { {
+    [[nodiscard]] esp_err_t SSD1306::ssd1306_command(uint8_t command) {
         esp_err_t status{ESP_OK};
         // i2c0 is a thread safe wrapper around the standard esp-idf i2c driver component(we use i2c port 0 for everything).
         return status;

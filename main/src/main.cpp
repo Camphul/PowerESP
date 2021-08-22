@@ -40,19 +40,24 @@ esp_err_t Main::setup(void) {
 
 void Main::run(void) {
     ESP_LOGI(LOG_TAG, "Rerunning loop");
-    ESP_ERROR_CHECK(led.set(true));
+    ESP_ERROR_CHECK(led.toggle());
+    vTaskDelay(pdSECOND);
+    bool isButtonPressed = button.state();
+    ESP_LOGI(LOG_TAG, "Button pressed state is: %s", isButtonPressed ? "yes" : "no");
+    /*
     for(uint8_t ledIndex = 0; ledIndex <3; ledIndex++) {
         for(uint16_t brightness = 0; brightness < 256; brightness++) {
             ESP_ERROR_CHECK(pwmController.setBrightness(ledIndex, brightness));
-            vTaskDelay(pdMS_TO_TICKS(5));
+            vTaskDelay(pdMS_TO_TICKS(1));
         }
         for(uint16_t brightness = 256; brightness > 0; brightness--) {
             ESP_ERROR_CHECK(pwmController.setBrightness(ledIndex, brightness));
-            vTaskDelay(pdMS_TO_TICKS(5));
+            vTaskDelay(pdMS_TO_TICKS(1));
         }
         ESP_ERROR_CHECK(pwmController.setBrightness(0, 0));
         ESP_ERROR_CHECK(pwmController.setBrightness(1, 0));
         ESP_ERROR_CHECK(pwmController.setBrightness(2, 0));
         ESP_ERROR_CHECK(led.set(ledIndex % 2 == 0));
-    }
+    }*/
+
 }
