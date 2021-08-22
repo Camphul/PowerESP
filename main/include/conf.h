@@ -1,14 +1,8 @@
-//
-// Created by luca on 8/20/21.
-//
-
-#ifndef POWERESP_MAIN_H
-#define POWERESP_MAIN_H
-#ifndef CPP_FREERTOS_NO_EXCEPTIONS
-#define CPP_FREERTOS_NO_EXCEPTIONS
-#endif
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
+#ifndef POWERESP_CONF_H
+#define POWERESP_CONF_H
+#include "Gpio.h"
+#include "I2Cbus.hpp"
+#include "PCA9632.h"
 #define I2C_CLK_FREQ 400000
 /* START PIN CONFIGURATION - MAKE GPIO PIN DEFINITIONS CONFIGURABLE THROUGH ESP-IDF MENUCONFIG! */
 #define I2C_SDA_PIN GPIO_NUM_21
@@ -22,5 +16,4 @@
 #define LEDRING_R 0
 #define LEDRING_G 1
 #define LEDRING_B 2
-/* END LEDRING CHANNEL DEFINTIONS */
-#endif //POWERESP_MAIN_H
+#endif
