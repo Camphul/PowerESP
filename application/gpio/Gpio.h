@@ -34,7 +34,7 @@ namespace Gpio{
                     .pin_bit_mask = static_cast<uint64_t>(1) << pin,
                     .mode = GPIO_MODE_OUTPUT,
                     .pull_up_en = GPIO_PULLUP_DISABLE,
-                    .pull_down_en = GPIO_PULLDOWN_ENABLE,
+                    .pull_down_en = GPIO_PULLDOWN_DISABLE,
                     .intr_type = GPIO_INTR_DISABLE,
                 },
                 invert
@@ -46,6 +46,7 @@ namespace Gpio{
             esp_err_t set(const bool state);
             esp_err_t toggle(void);
             bool state(void) { return _state; }
+            esp_err_t holdPin(bool hold);
         }; // class GpioOutput
 
         class GpioInput : public GpioBase {

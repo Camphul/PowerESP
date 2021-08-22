@@ -44,4 +44,21 @@ namespace Gpio {
     esp_err_t GpioOutput::toggle(void) {
         return this->set(!_state);
     }
+
+    /**
+     * @brief uses either gpio_pad_hold or gpio_pad_unhold to maintain the pad's value.
+     * @param hold if the pad should hold or unhold it's state.
+     * @return if held/unhold with success.
+     */
+    esp_err_t GpioOutput::holdPin(bool hold) {
+        esp_err_t status{ESP_OK};
+        if(hold) {
+            gpio_pad_hold(_pin);
+            ESP_LOGD(LOG_TAG, "Holding GPIO pad %d", _pin);
+        } else {
+            ESP_LOGD(LOG_TAG, "Unholding GPIO pad %d", _pin);
+            gpio_pad_unhold(_pin);
+        }
+        return status;
+    }
 } //namespace Gpio
