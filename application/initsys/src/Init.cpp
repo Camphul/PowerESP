@@ -6,9 +6,11 @@
 #define LOG_LEVEL_LOCAL ESP_LOG_VERBOSE
 #include "esp_log.h"
 #define LOG_TAG "INITSYS"
-
+#define INIT_WORK_ITEM_QUEUE_STACK_DEPTH 2048
+#define INIT_WORK_ITEM_QUEUE_PRIORITY 5
+#include "GpioInitWorkItem.hpp"
 Init_t rootTask = initsys::Init();
-
+volatile int InitWorkItem::WorkItemCount = 0;
 using namespace initsys;
 void Init::Run() {
     ESP_LOGI(LOG_TAG, "Initializing system");
@@ -34,6 +36,9 @@ void Init::Run() {
 esp_err_t Init::init() {
     esp_err_t status{ESP_OK};
     ESP_LOGI(LOG_TAG, "Init invoked");
+    WorkQueue initWorkQueue("init_work_queue", INIT_WORK_ITEM_QUEUE_STACK_DEPTH, INIT_WORK_ITEM_QUEUE_PRIORITY);
+    initWorkQueue.QueueWork(new GpioInitWorkItem("GpioInit", true));
+    ESP_LOGI(LOG_TAG, "Done with init");
     return status;
 }
 

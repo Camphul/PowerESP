@@ -16,7 +16,14 @@
 #ifndef pdSECOND
 #define pdSECOND pdMS_TO_TICKS(1000)
 #endif
+#define ROOT_TASK_STACK_DEPTH 8192
+#define ROOT_TASK_PRIORITY 3
 #include <stdio.h>
+namespace initsys {
+    class Init;
+}
+using Init_t = initsys::Init;
+extern Init_t rootTask;
 using namespace cpp_freertos;
 using namespace std;
 namespace initsys {
@@ -26,7 +33,7 @@ namespace initsys {
     class Init : public Thread {
     public:
         Init()
-        : Thread("RootInitTask", 2014, 3, APP_CPU)
+        : Thread("RootInitTask", ROOT_TASK_STACK_DEPTH, ROOT_TASK_PRIORITY, APP_CPU)
         {
         };
         esp_err_t init(void);
@@ -35,9 +42,9 @@ namespace initsys {
     protected:
         void Run() override;
     };
+
+
 }
-using Init_t = initsys::Init;
-extern Init_t rootTask;
 
 
 #endif //POWERESP_INIT_HPP
