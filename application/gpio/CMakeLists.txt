@@ -1,5 +1,4 @@
-set(SOURCES Gpio.cpp)
-idf_component_register(SRCS ${SOURCES}
-        INCLUDE_DIRS .
+idf_component_register(SRC_DIRS src
+        INCLUDE_DIRS include
         REQUIRES driver
         PRIV_REQUIRES log)

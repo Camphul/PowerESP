@@ -1,4 +1,3 @@
-set(SOURCES SSD1306.cpp)
-idf_component_register(SRCS ${SOURCES}
-        INCLUDE_DIRS .
-        REQUIRES driver I2Cbus log)
+idf_component_register(SRC_DIRS src
+        INCLUDE_DIRS include
+        REQUIRES I2Cbus log)
