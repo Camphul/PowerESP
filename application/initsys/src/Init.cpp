@@ -6,6 +6,9 @@
 #define LOG_LEVEL_LOCAL ESP_LOG_VERBOSE
 #include "esp_log.h"
 #define LOG_TAG "INITSYS"
+
+Init_t rootTask = initsys::Init();
+
 using namespace initsys;
 void Init::Run() {
     ESP_LOGI(LOG_TAG, "Initializing system");

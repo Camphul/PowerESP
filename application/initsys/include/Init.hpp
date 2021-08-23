@@ -36,6 +36,8 @@ namespace initsys {
         void Run() override;
     };
 }
+using Init_t = initsys::Init;
+extern Init_t rootTask;
 
 
 #endif //POWERESP_INIT_HPP
