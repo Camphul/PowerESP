@@ -15,7 +15,6 @@ extern "C" void app_main(void)
 {
     ESP_LOGV(LOG_TAG, "Creating Root Init Task/Thread");
     rootTask.Start();
-    CONFIG_LEDRING_B
     vTaskDelete(nullptr);
     ESP_LOGV(LOG_TAG, "Reached end of app_main");
 }
