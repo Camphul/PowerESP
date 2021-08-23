@@ -1,0 +1,50 @@
+menu "PowerESP Config"
+	config I2C_CLK_FREQ
+		int "I2C Clock Frequency"
+		range 0 400000
+		default 400000
+		help
+			The frequency used by the I2C clock.
+	config I2C_SDA_PIN
+		int "I2C SDA pin"
+		range 0 36
+		default 21
+		help
+			I2C SDA pin used by OLED and PWM controller.
+	config I2C_SCL_PIN
+		int "I2C SCL pin"
+		range 0 36
+		default 22
+		help
+			I2C SCL pin used by OLED and PWM controller.
+	config GPIO_PIN_SOFTLATCH_POWER
+		int "Softlatch power pin"
+		range 0 36
+		default 33
+		help
+			Pin used to output signal to the mosfet power bootstrap circuit.
+	config GPIO_PIN_SOFTLATCH_BUTTON
+		int "Softlatch button detect pin"
+		range 0 36
+		default 32
+		help
+			Pin from which can be sensed if the button connected to the bootstrap circuit is pressed.
+	config LEDRING_R
+		int "Red PWM channel on PCA9632"
+		range 0 2
+		default 0
+		help
+			PWM channel on the PCA0632 connected to the color red.
+	config LEDRING_G
+		int "Green PWM channel on PCA9632"
+		range 0 2
+		default 1
+		help
+			PWM channel on the PCA0632 connected to the color green.
+	config LEDRING_B
+		int "Blue PWM channel on PCA9632"
+		range 0 2
+		default 2
+		help
+			PWM channel on the PCA0632 connected to the color blue.
+endmenu

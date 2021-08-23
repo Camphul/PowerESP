@@ -195,7 +195,7 @@ namespace PwmControl {
         uint16_t maxValue = oldLedoutValue == BRIGHTNESS_DIMMING_BLINKING_CONTROL ? 0XFF : 0X100;
         uint16_t clampedValue = value > maxValue ? maxValue : value;
         OutputDriverEffect newLedoutValue;
-        if(clampedValue == 0X100) {
+        if(clampedValue == 0x100) {
             newLedoutValue = FULLY_ON;
         } else if(oldLedoutValue == BRIGHTNESS_DIMMING_BLINKING_CONTROL) {
             newLedoutValue = BRIGHTNESS_DIMMING_BLINKING_CONTROL;
