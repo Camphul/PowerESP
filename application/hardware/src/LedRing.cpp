@@ -31,9 +31,9 @@ namespace Hardware {
     }
     esp_err_t LedRing::allOff() {
         esp_err_t status{ESP_OK};
-        status |= _controller.setBrightness(CONFIG_LEDRING_R, 0);
-        status |= _controller.setBrightness(CONFIG_LEDRING_G, 0);
-        status |= _controller.setBrightness(CONFIG_LEDRING_B, 0);
+        status |= _controller.setBrightness(CONFIG_LEDRING_R, LED_FULLY_OFF);
+        status |= _controller.setBrightness(CONFIG_LEDRING_G, LED_FULLY_OFF);
+        status |= _controller.setBrightness(CONFIG_LEDRING_B, LED_FULLY_OFF);
         return status;
     }
     esp_err_t LedRing::color(LedColor_t color, uint16_t brightness) {

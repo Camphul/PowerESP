@@ -32,7 +32,7 @@ namespace Hardware {
         };
         esp_err_t init(void);
         esp_err_t allOff(void);
-        esp_err_t color(LedColor_t color, uint16_t brightness=255);
+        esp_err_t color(LedColor_t color, uint16_t brightness=LED_FULLY_ON);
         esp_err_t red(uint8_t brightness=255) { return color(RED, brightness);};
         esp_err_t green(uint8_t brightness=255) { return color(GREEN, brightness);};
         esp_err_t blue(uint8_t brightness=255) { return color(BLUE, brightness);};

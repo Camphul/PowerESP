@@ -1,3 +1,4 @@
 build
 cmake-build-default
 esp-idf
+scripts/copykicadsources

@@ -66,7 +66,7 @@ esp_err_t Init::loop() {
     } else if (_loopCounter %5 == 0) {
         //do stuff
         buttonLedRing.color(GREEN);
-    } else if (_loopCounter %6 == 0) {
+    } else if (_loopCounter %7 == 0) {
         //do stuff
         buttonLedRing.color(BLUE);
     } else {

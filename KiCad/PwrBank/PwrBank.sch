@@ -1,0 +1,489 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 8
+Title "Powerbank BMS Additional Circuitry"
+Date "2021-07-11"
+Rev "1"
+Comp "Logic Shift"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text GLabel 1450 1200 2    50   Input ~ 0
+BTN_NO
+Wire Wire Line
+	850  1800 900  1800
+$Sheet
+S 3200 1150 900  750 
+U 60EE26E7
+F0 "SmartSoftLatch" 50
+F1 "SmartSoftLatch.sch" 50
+F2 "BTN_NO" I R 4100 1600 50 
+F3 "MCU_LATCH_BTN" O R 4100 1700 50 
+F4 "MCU_LATCH_ENABLE" I R 4100 1800 50 
+$EndSheet
+Text GLabel 4250 1600 2    50   Output ~ 0
+BTN_NO
+Wire Wire Line
+	4250 1600 4100 1600
+Wire Wire Line
+	900  1700 850  1700
+$Sheet
+S 3200 3650 1400 1000
+U 60F78247
+F0 "CHARGER_BUCKBOOST" 50
+F1 "CHARGER_BUCKBOOST.sch" 50
+F2 "V_BATTERY_CHARGING" O R 4600 4000 50 
+$EndSheet
+Text Notes 3250 4300 0    50   ~ 0
+Used for charging powerbank \nfrom VDC source
+$Sheet
+S 3200 2200 2200 1050
+U 60F2D9E7
+F0 "ESP32_AND_SUCH" 50
+F1 "MCU.sch" 50
+F2 "BMS_TX" O R 5400 2400 50 
+F3 "BMS_RX" I R 5400 2300 50 
+F4 "SDA1" B R 5400 3050 50 
+F5 "SCL1" O R 5400 3150 50 
+F6 "U1TXD" O L 3200 2950 50 
+F7 "U1RXD" I L 3200 3050 50 
+F8 "TOUCH_SENSE" O L 3200 2400 50 
+F9 "MCU_PWR_ENABLE" O L 3200 2600 50 
+F10 "MCU_PWR_BTN_DETECT" O L 3200 2750 50 
+$EndSheet
+Text GLabel 3100 2600 0    50   Input ~ 0
+MCU_POWER_EN
+Wire Wire Line
+	3100 2600 3200 2600
+Text GLabel 4250 1800 2    50   Output ~ 0
+MCU_POWER_EN
+Wire Wire Line
+	4250 1800 4100 1800
+Text GLabel 3100 2750 0    50   Output ~ 0
+MCU_POWER_BTN_DETECT
+Wire Wire Line
+	3100 2750 3200 2750
+Wire Wire Line
+	4250 1700 4100 1700
+Text GLabel 4250 1700 2    50   Input ~ 0
+MCU_POWER_BTN_DETECT
+$Comp
+L Connector:Conn_01x04_Female J?
+U 1 1 60F67167
+P 5800 1400
+F 0 "J?" V 5738 1112 50  0000 R CNN
+F 1 "BMS_UART" V 5647 1112 50  0000 R CNN
+F 2 "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical" H 5800 1400 50  0001 C CNN
+F 3 "https://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 5800 1400 50  0001 C CNN
+	1    5800 1400
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	5400 2300 5800 2300
+Wire Wire Line
+	5800 2300 5800 1600
+Wire Wire Line
+	5900 1600 5900 2400
+Wire Wire Line
+	5900 2400 5400 2400
+Wire Wire Line
+	5700 1600 5700 1750
+NoConn ~ 6000 1600
+Text Notes 6050 1750 0    50   ~ 0
+VCC from BMS is 10V, dont connect\n\n
+Text GLabel 850  3600 2    50   Output ~ 0
+V_BATTERY_CHARGING
+Text GLabel 4650 4000 2    50   Output ~ 0
+V_BATTERY_CHARGING
+Wire Wire Line
+	4650 4000 4600 4000
+$Comp
+L Device:Fuse_Small F?
+U 1 1 60FAD177
+P 1050 3900
+F 0 "F?" H 1050 4085 50  0000 C CNN
+F 1 "30A" H 1050 3994 50  0000 C CNN
+F 2 "Fuse:Fuseholder_Blade_Mini_Keystone_3568" H 1050 3900 50  0001 C CNN
+F 3 "https://www.keyelco.com/userAssets/file/M65p42.pdf" H 1050 3900 50  0001 C CNN
+	1    1050 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 3900 1150 3900
+$Comp
+L Connector:Conn_01x02_Female J?
+U 1 1 60FB0D32
+P 1450 4350
+F 0 "J?" H 1478 4326 50  0000 L CNN
+F 1 "CHARGEPORT" H 1478 4235 50  0000 L CNN
+F 2 "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical" H 1450 4350 50  0001 C CNN
+F 3 "https://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 1450 4350 50  0001 C CNN
+	1    1450 4350
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	1150 4350 1250 4350
+Wire Wire Line
+	1150 4250 1250 4250
+Wire Wire Line
+	700  3900 950  3900
+Wire Wire Line
+	850  3600 700  3600
+Wire Notes Line
+	2000 4800 2000 3450
+Wire Notes Line
+	2000 3450 600  3450
+Wire Notes Line
+	600  3450 600  4800
+Wire Notes Line
+	600  4800 2000 4800
+Text Notes 600  3400 0    50   ~ 10
+BMS Battery in port and charging port.
+Text GLabel 1500 800  2    50   Output ~ 0
+LEDRING_R
+Wire Wire Line
+	1500 800  1450 800 
+$Comp
+L power:+BATT #PWR?
+U 1 1 60FEDA44
+P 1250 3900
+F 0 "#PWR?" H 1250 3750 50  0001 C CNN
+F 1 "+BATT" V 1265 4028 50  0000 L CNN
+F 2 "" H 1250 3900 50  0001 C CNN
+F 3 "" H 1250 3900 50  0001 C CNN
+	1    1250 3900
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 60FF3549
+P 1050 4400
+F 0 "#PWR?" H 1050 4150 50  0001 C CNN
+F 1 "GND" V 1055 4272 50  0000 R CNN
+F 2 "" H 1050 4400 50  0001 C CNN
+F 3 "" H 1050 4400 50  0001 C CNN
+	1    1050 4400
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1050 4400 1150 4400
+Wire Wire Line
+	1150 4400 1150 4350
+$Comp
+L power:GND #PWR?
+U 1 1 6100046F
+P 900 1800
+F 0 "#PWR?" H 900 1550 50  0001 C CNN
+F 1 "GND" V 905 1672 50  0000 R CNN
+F 2 "" H 900 1800 50  0001 C CNN
+F 3 "" H 900 1800 50  0001 C CNN
+	1    900  1800
+	0    -1   -1   0   
+$EndComp
+$Comp
+L +batt_switched:+BATT_SWITCHED #PWR?
+U 1 1 6100DB2C
+P 900 1700
+F 0 "#PWR?" H 900 1550 50  0001 C CNN
+F 1 "+BATT_SWITCHED" V 915 1828 50  0000 L CNN
+F 2 "" H 900 1700 50  0001 C CNN
+F 3 "" H 900 1700 50  0001 C CNN
+	1    900  1700
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:Conn_01x04_Female J?
+U 1 1 61013B78
+P 650 5450
+AR Path="/60ECA2F7/61013B78" Ref="J?"  Part="1" 
+AR Path="/61013B78" Ref="J?"  Part="1" 
+F 0 "J?" H 600 5650 50  0000 C CNN
+F 1 "STEPDOWN_MODULE_CON" H 200 5750 50  0000 C CNN
+F 2 "TB003-500-P04BE:CUI_TB003-500-P04BE" H 650 5450 50  0001 C CNN
+F 3 "https://nl.mouser.com/datasheet/2/670/tb003_500-2306959.pdf" H 650 5450 50  0001 C CNN
+	1    650  5450
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 61013B88
+P 850 5350
+AR Path="/60ECA2F7/61013B88" Ref="#PWR?"  Part="1" 
+AR Path="/61013B88" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 850 5100 50  0001 C CNN
+F 1 "GND" V 855 5222 50  0000 R CNN
+F 2 "" H 850 5350 50  0001 C CNN
+F 3 "" H 850 5350 50  0001 C CNN
+	1    850  5350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 61013B8E
+P 850 5550
+AR Path="/60ECA2F7/61013B8E" Ref="#PWR?"  Part="1" 
+AR Path="/61013B8E" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 850 5300 50  0001 C CNN
+F 1 "GND" V 855 5422 50  0000 R CNN
+F 2 "" H 850 5550 50  0001 C CNN
+F 3 "" H 850 5550 50  0001 C CNN
+	1    850  5550
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+5V #PWR?
+U 1 1 61013B94
+P 850 5450
+AR Path="/60ECA2F7/61013B94" Ref="#PWR?"  Part="1" 
+AR Path="/61013B94" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 850 5300 50  0001 C CNN
+F 1 "+5V" V 865 5578 50  0000 L CNN
+F 2 "" H 850 5450 50  0001 C CNN
+F 3 "" H 850 5450 50  0001 C CNN
+	1    850  5450
+	0    1    1    0   
+$EndComp
+$Comp
+L +batt_switched:+BATT_SWITCHED #PWR?
+U 1 1 61013B9A
+P 1250 5250
+AR Path="/60ECA2F7/61013B9A" Ref="#PWR?"  Part="1" 
+AR Path="/61013B9A" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 1250 5100 50  0001 C CNN
+F 1 "+BATT_SWITCHED" V 1250 5350 50  0000 L CNN
+F 2 "" H 1250 5250 50  0001 C CNN
+F 3 "" H 1250 5250 50  0001 C CNN
+	1    1250 5250
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	700  3900 700  3600
+$Comp
+L power:PWR_FLAG #FLG?
+U 1 1 6109AB15
+P 1250 5350
+F 0 "#FLG?" H 1250 5425 50  0001 C CNN
+F 1 "PWR_FLAG" V 1250 5650 50  0000 C CNN
+F 2 "" H 1250 5350 50  0001 C CNN
+F 3 "~" H 1250 5350 50  0001 C CNN
+	1    1250 5350
+	0    1    1    0   
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG?
+U 1 1 6109B730
+P 1250 4250
+F 0 "#FLG?" H 1250 4325 50  0001 C CNN
+F 1 "PWR_FLAG" H 1250 4423 50  0000 C CNN
+F 2 "" H 1250 4250 50  0001 C CNN
+F 3 "~" H 1250 4250 50  0001 C CNN
+	1    1250 4250
+	1    0    0    -1  
+$EndComp
+Connection ~ 1250 4250
+$Comp
+L power:GND #PWR?
+U 1 1 610A7150
+P 5700 1750
+AR Path="/60ECA2F7/610A7150" Ref="#PWR?"  Part="1" 
+AR Path="/610A7150" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 5700 1500 50  0001 C CNN
+F 1 "GND" H 5705 1577 50  0000 C CNN
+F 2 "" H 5700 1750 50  0001 C CNN
+F 3 "" H 5700 1750 50  0001 C CNN
+	1    5700 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x04_Female J?
+U 1 1 60F9EBFE
+P 6850 3650
+F 0 "J?" H 6750 3350 50  0000 R CNN
+F 1 "SSD1306_OLED_CON" H 7050 3250 50  0000 R CNN
+F 2 "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical" H 6850 3650 50  0001 C CNN
+F 3 "https://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 6850 3650 50  0001 C CNN
+	1    6850 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 60FA2045
+P 6650 3750
+F 0 "#PWR?" H 6650 3600 50  0001 C CNN
+F 1 "+3.3V" V 6665 3878 50  0000 L CNN
+F 2 "" H 6650 3750 50  0001 C CNN
+F 3 "" H 6650 3750 50  0001 C CNN
+	1    6650 3750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 60FA2D4B
+P 6650 3850
+F 0 "#PWR?" H 6650 3600 50  0001 C CNN
+F 1 "GND" V 6655 3722 50  0000 R CNN
+F 2 "" H 6650 3850 50  0001 C CNN
+F 3 "" H 6650 3850 50  0001 C CNN
+	1    6650 3850
+	0    1    1    0   
+$EndComp
+$Sheet
+S 6250 2550 1000 700 
+U 60FA4163
+F0 "I2C_led_controller" 50
+F1 "I2CLEDCONTROL.sch" 50
+F2 "LEDRING_R" O L 6250 2650 50 
+F3 "LEDRING_G" O L 6250 2750 50 
+F4 "LEDRING_B" O L 6250 2850 50 
+F5 "SDA" B L 6250 3050 50 
+F6 "SCL" I L 6250 3150 50 
+$EndSheet
+Text GLabel 6200 2650 0    50   Output ~ 0
+LEDRING_R
+Text GLabel 6200 2750 0    50   Output ~ 0
+LEDRING_G
+Text GLabel 6200 2850 0    50   Output ~ 0
+LEDRING_B
+Wire Wire Line
+	6200 2650 6250 2650
+Wire Wire Line
+	6200 2750 6250 2750
+Wire Wire Line
+	6200 2850 6250 2850
+Text GLabel 1500 900  2    50   Output ~ 0
+LEDRING_G
+Text GLabel 1500 1000 2    50   Output ~ 0
+LEDRING_B
+Wire Wire Line
+	1450 900  1500 900 
+Wire Wire Line
+	1450 1000 1500 1000
+$Comp
+L power:+VDC #PWR?
+U 1 1 60FDC35F
+P 1150 4250
+F 0 "#PWR?" H 1150 4150 50  0001 C CNN
+F 1 "+VDC" V 1150 4479 50  0000 L CNN
+F 2 "" H 1150 4250 50  0001 C CNN
+F 3 "" H 1150 4250 50  0001 C CNN
+	1    1150 4250
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector:Conn_01x04_Female J?
+U 1 1 60FE873B
+P 2600 3150
+F 0 "J?" H 2800 3050 50  0000 C CNN
+F 1 "UART_1" H 2800 3150 50  0000 C CNN
+F 2 "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical" H 2600 3150 50  0001 C CNN
+F 3 "~" H 2600 3150 50  0001 C CNN
+	1    2600 3150
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2800 2950 3200 2950
+Wire Wire Line
+	2800 3050 3200 3050
+$Comp
+L power:GND #PWR?
+U 1 1 60FED4F1
+P 2800 3250
+F 0 "#PWR?" H 2800 3000 50  0001 C CNN
+F 1 "GND" V 2805 3122 50  0000 R CNN
+F 2 "" H 2800 3250 50  0001 C CNN
+F 3 "" H 2800 3250 50  0001 C CNN
+	1    2800 3250
+	0    -1   -1   0   
+$EndComp
+Text GLabel 1500 1300 2    50   Output ~ 0
+CAPACITIVE_BTN_SENSE
+Wire Wire Line
+	1500 1300 1450 1300
+Text GLabel 3150 2400 0    50   Input ~ 0
+CAPACITIVE_BTN_SENSE
+Wire Wire Line
+	3200 2400 3150 2400
+$Sheet
+S 600  700  850  700 
+U 60EAFEE2
+F0 "MomentaryRGBSwitch" 50
+F1 "MomentaryRGBSwitch.sch" 50
+F2 "LED_R" I R 1450 800 50 
+F3 "LED_G" I R 1450 900 50 
+F4 "LED_B" I R 1450 1000 50 
+F5 "BUTTON_NO" O R 1450 1200 50 
+F6 "CAPACITIVE_SENSE" O R 1450 1300 50 
+$EndSheet
+$Comp
+L power:+5V #PWR?
+U 1 1 612B173F
+P 2800 3150
+F 0 "#PWR?" H 2800 3000 50  0001 C CNN
+F 1 "+5V" V 2800 3300 50  0000 L CNN
+F 2 "" H 2800 3150 50  0001 C CNN
+F 3 "" H 2800 3150 50  0001 C CNN
+	1    2800 3150
+	0    1    1    0   
+$EndComp
+Text Notes 6900 3850 0    50   ~ 0
+SDA\nSCL\n3.3V\nGND
+Text Notes 6300 4300 0    50   ~ 0
+OLED module already\ncontains pullup resistors
+Wire Wire Line
+	6650 3550 6100 3550
+Wire Wire Line
+	6100 3550 6100 3050
+Connection ~ 6100 3050
+Wire Wire Line
+	6100 3050 6250 3050
+Wire Wire Line
+	6000 3150 6000 3650
+Wire Wire Line
+	6000 3650 6650 3650
+Connection ~ 6000 3150
+Wire Wire Line
+	6000 3150 6250 3150
+Wire Notes Line
+	6250 4350 6250 3450
+Wire Notes Line
+	6250 3450 7350 3450
+Wire Notes Line
+	7350 3450 7350 4350
+Wire Notes Line
+	7350 4350 6250 4350
+Wire Wire Line
+	5400 3150 6000 3150
+Wire Wire Line
+	5400 3050 6100 3050
+Wire Wire Line
+	1250 5350 1250 5250
+Wire Wire Line
+	1250 5250 850  5250
+Connection ~ 1250 5250
+Text Notes 650  5150 0    50   ~ 0
+Screw terminal connecting battery\nvoltage to the stepdown module
+Wire Notes Line
+	600  4950 600  5800
+Wire Notes Line
+	600  5800 2000 5800
+Wire Notes Line
+	2000 5800 2000 4950
+Wire Notes Line
+	2000 4950 600  4950
+$Comp
+L Connector:Conn_01x02_Female J?
+U 1 1 61316113
+P 650 1800
+F 0 "J?" H 600 1900 50  0000 C CNN
+F 1 "FASTCHARGE_MODULE_CON" H 150 2000 50  0000 C CNN
+F 2 "" H 650 1800 50  0001 C CNN
+F 3 "~" H 650 1800 50  0001 C CNN
+	1    650  1800
+	-1   0    0    1   
+$EndComp
+$EndSCHEMATC
