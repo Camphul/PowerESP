@@ -79,6 +79,7 @@ namespace PwmControl {
         esp_err_t readRegister(uint8_t regAddr, uint8_t* value);
     };
 }
-
+using PwmController_t = PwmControl::PCA9632;
+extern PwmController_t ledRing;
 
 #endif //POWERESP_PCA9632_H

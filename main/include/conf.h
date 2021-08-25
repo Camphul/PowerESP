@@ -1,7 +1,7 @@
 #ifndef POWERESP_CONF_H
 #define POWERESP_CONF_H
-#include "Gpio.h"
 #include "I2Cbus.hpp"
+#include "Gpio.h"
 #include "PCA9632.h"
 #define I2C_CLK_FREQ 400000
 /* START PIN CONFIGURATION - MAKE GPIO PIN DEFINITIONS CONFIGURABLE THROUGH ESP-IDF MENUCONFIG! */

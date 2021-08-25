@@ -8,6 +8,7 @@
 #define LOG_TAG "PCA9632"
 #include "freertos/task.h"
 #define DEFAULT_I2C_TIMEOUT 10
+PwmController_t ledRing = PwmControl::PCA9632();
 namespace PwmControl {
     [[nodiscard]] esp_err_t PCA9632::init_device(void) {
         esp_err_t status{ESP_OK};

@@ -7,6 +7,7 @@
 #include "esp_log.h"
 #define LOG_TAG "GPIO_INIT"
 void GpioInitWorkItem::Initialize() {
-    ESP_LOGI(LOG_TAG, "Running GPIO init work....");
+    ESP_LOGI(LOG_TAG, "Finished work shuttong myself down.");
+
 }
 

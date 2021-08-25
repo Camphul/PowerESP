@@ -7,8 +7,8 @@
 #include "InitWorkItem.hpp"
 class GpioInitWorkItem : public InitWorkItem {
     public:
-        GpioInitWorkItem(string name, bool freeAfterComplete = false )
-        : InitWorkItem(name, freeAfterComplete) {
+        GpioInitWorkItem(bool freeAfterComplete = false )
+        : InitWorkItem("GpioInit", freeAfterComplete) {
         };
         void Initialize(void) override;
 };
