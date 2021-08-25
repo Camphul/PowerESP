@@ -6,6 +6,10 @@
 #define LOG_LEVEL_LOCAL ESP_LOG_VERBOSE
 #include "esp_log.h"
 #define LOG_TAG "GPIO"
+const gpio_num_t pin_power_button = (gpio_num_t)CONFIG_GPIO_PIN_SOFTLATCH_BUTTON;
+const gpio_num_t pin_power_bootstrap = (gpio_num_t)CONFIG_GPIO_PIN_SOFTLATCH_POWER;
+PushButton_t powerButton = Gpio::GpioInput(pin_power_button, true);
+GpioOutput_t powerBootstrap = Gpio::GpioOutput(pin_power_bootstrap);
 namespace Gpio {
     [[nodiscard]] esp_err_t GpioBase::init(void) {
         esp_err_t status{ESP_OK};
@@ -17,17 +21,13 @@ namespace Gpio {
         esp_err_t status{GpioBase::init()};
         return status;
     } // GpioInput::init
+
     bool GpioInput::state(void) {
         int level = gpio_get_level(_pin);
         ESP_LOGI(LOG_TAG, "Reading GPIO Input at level: %d", level);
         bool readState = static_cast<bool>(level);
         return _inverted_logic == !readState;
-    }
-
-    esp_err_t GpioInput::set(const bool state) {
-        //should actually not be called ever as input.
-        return ESP_OK;
-    }
+    }//GpioInput::State
 
     [[nodiscard]] esp_err_t GpioOutput::init(void) {
         esp_err_t status{GpioBase::init()};
@@ -36,6 +36,7 @@ namespace Gpio {
         }
         return status;
     }// GpioOutput::init
+
     esp_err_t GpioOutput::set(const bool state) {
         _state = state;
         return gpio_set_level(_pin, _inverted_logic ? !_state : _state);
@@ -43,7 +44,7 @@ namespace Gpio {
 
     esp_err_t GpioOutput::toggle(void) {
         return this->set(!_state);
-    }
+    }// GpioOutput::toggle
 
     /**
      * @brief uses either gpio_pad_hold or gpio_pad_unhold to maintain the pad's value.
@@ -60,5 +61,5 @@ namespace Gpio {
             gpio_pad_unhold(_pin);
         }
         return status;
-    }
+    } // GpioOutput::holdPin
 } //namespace Gpio

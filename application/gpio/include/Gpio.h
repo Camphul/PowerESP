@@ -6,7 +6,24 @@
 #define POWERESP_GPIO_H
 
 #include "driver/gpio.h"
+namespace Gpio {
+    class GpioBase;
+    class GpioOutput;
+    class GpioInput;
+}
 
+using GpioInput_t = Gpio::GpioInput;
+using GpioOutput_t = Gpio::GpioOutput;
+using PushButton_t = GpioInput_t;
+/**
+ * Physical button on the hardware used to power the device on/off/do other programmed actions
+ */
+extern PushButton_t powerButton;
+/**
+ * powerBootstrap is meant to be an output which can only be set inverse once since
+ * it will power off the device.
+ */
+extern GpioOutput_t powerBootstrap;
 namespace Gpio{
         class GpioBase {
             protected:
@@ -21,8 +38,9 @@ namespace Gpio{
             {
             }
             virtual bool state(void) =0;
-            virtual esp_err_t set(const bool state) =0;
-            [[nodiscard]] esp_err_t init(void);
+
+            // virtual esp_err_t set(const bool state) =0;
+            virtual esp_err_t init(void);
         }; // class GpioBase
 
         class GpioOutput : public GpioBase{
@@ -42,11 +60,11 @@ namespace Gpio{
             {
                 gpio_config(&_cfg);
             }
-            esp_err_t init(void);
-            esp_err_t set(const bool state);
-            esp_err_t toggle(void);
-            bool state(void) { return _state; }
-            esp_err_t holdPin(bool hold);
+            [[nodiscard]]esp_err_t init(void);
+            [[nodiscard]]esp_err_t set(const bool state);
+            [[nodiscard]]esp_err_t toggle(void);
+            bool state(void) override { return _state; }
+            [[nodiscard]]esp_err_t holdPin(bool hold);
         }; // class GpioOutput
 
         class GpioInput : public GpioBase {
@@ -66,8 +84,7 @@ namespace Gpio{
             {
                 gpio_config(&_cfg);
             }
-            esp_err_t init(void);
-            esp_err_t set(const bool state);
+            esp_err_t init(void) override;
             bool state(void);
         }; //class GpioInput
 } // namespace Gpio

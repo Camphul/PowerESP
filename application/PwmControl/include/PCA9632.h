@@ -80,6 +80,6 @@ namespace PwmControl {
     };
 }
 using PwmController_t = PwmControl::PCA9632;
-extern PwmController_t ledRing;
+extern PwmController_t pwmLedRingController;
 
 #endif //POWERESP_PCA9632_H

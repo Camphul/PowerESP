@@ -16,7 +16,7 @@
 #ifndef pdSECOND
 #define pdSECOND pdMS_TO_TICKS(1000)
 #endif
-#define ROOT_TASK_STACK_DEPTH 8192
+#define ROOT_TASK_STACK_DEPTH 8192*2
 #define ROOT_TASK_PRIORITY 3
 #include <stdio.h>
 namespace initsys {
@@ -41,6 +41,7 @@ namespace initsys {
         esp_err_t shutdown(uint8_t secondsDelay =5);
     protected:
         void Run() override;
+        uint32_t _loopCounter = 0;
     };
 
 
